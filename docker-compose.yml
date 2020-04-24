@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  imageboard-backend-db:
+    image: postgres:9.6.17-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: "imageboard"
+      POSTGRES_USER: "imageboard"
+      POSTGRES_PASSWORD: "some-secret"
+    ports:
+      - "5432:5432"

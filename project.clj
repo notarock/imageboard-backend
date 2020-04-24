@@ -6,9 +6,17 @@
                  [ring/ring-json "0.5.0"]
                  [compojure "1.6.1"]
                  [toucan "1.15.1"]
-                 [lynxeyes/dotenv "1.0.2"]
+                 [org.postgresql/postgresql "42.2.4"]
+                 [environ "0.5.0"]
                  [ring/ring-defaults "0.3.2"]]
-  :plugins [[lein-ring "0.12.5"]]
+  :env {:app-env DEV
+        :db-host "localhost" 
+        :db-port "5432" 
+        :db-name "imageboard"
+        :db-user "imageboard"
+        :db-pass "some-secret"}
+  :plugins [[lein-ring "0.12.5"]
+            [lein-environ "1.1.0"] ]
   :ring {:handler imageboard-backend.handler/app
          :nrepl {:start? true} }
   :profiles
