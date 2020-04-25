@@ -27,7 +27,8 @@
             [migratus-lein "0.7.3"]
             [lein-environ "1.1.0"] ]
   :ring {:handler imageboard-backend.handler/app
-         :nrepl {:start? true} }
+         :nrepl {:start? true}
+         :port 5000}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring/ring-mock "0.3.2"]]}})
