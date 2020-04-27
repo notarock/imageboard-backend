@@ -3,7 +3,9 @@
             [compojure.route :as route]
             [ring.middleware.json :refer [wrap-json-response]]
             [ring.util.response :refer [response]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.middleware.cors :refer [wrap-cors]]))
+
 
 (def post
   {:id 0,
@@ -51,6 +53,12 @@
   (GET "/boards" [] post-handler)
   (route/not-found error-404-handler))
 
+(def handler
+  (wrap-cors api :access-control-allow-origin ["*"]
+             :access-control-allow-methods [:get :put :post :delete]))
+
 (def app
   (wrap-json-response api))
+
+
 

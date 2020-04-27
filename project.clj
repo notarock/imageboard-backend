@@ -9,6 +9,8 @@
                  [org.postgresql/postgresql "42.2.4"]
                  [environ "0.5.0"]
                  [migratus "1.2.8"]
+                 [ring/ring-headers "0.3.0"]
+                 [ring-cors "0.1.13"]
                  [ring/ring-defaults "0.3.2"]]
   :env {:app-env DEV
         :db-host "localhost" 
