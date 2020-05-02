@@ -6,7 +6,7 @@
 
 
 (def post
-  {:id 0,
+  {:id 12334
    :name "[This is the name of my post]",
    :content "Dolorem omnis autem velit recusandae aliquid dolorem corrupti totam.
  Quis aliquam mollitia adipisci qui debitis voluptatem amet molestias. Aut quaerat dicta ratione dolore et.
@@ -28,6 +28,12 @@
  Beatae velit voluptatem id. Ipsa voluptatem excepturi eligendi.",
    :uri "https://source.unsplash.com/random"})
 
+(defn make-post [id]
+  (assoc post :id id))
+
+(def posts
+  (map make-post (range 0 20)))
+
 (def boards
   [{:id 0 :name "Home" :abbreviation "h"}
    {:id 1 :name "technology" :abbreviation "g"}
@@ -36,7 +42,7 @@
    {:id 4 :name "Food & cooking" :abbreviation "ck"}])
 
 (defn post-handler [request]
-  (response {:post post}))
+  (response {:posts posts}))
 
 (defn board-handler [request]
   (response {:boards boards}))
@@ -52,8 +58,8 @@
     (let [response (handler request)]
       (-> response
           (assoc-in [:headers "Access-Control-Allow-Origin"]  "*")
-          (assoc-in [:headers "Access-Control-Allow-Methods"] "GET,PUT,POST,DELETE,OPTIONS")
-          (assoc-in [:headers "Access-Control-Allow-Headers"] "X-Requested-With,Content-Type,Cache-Control")))))
+          ))))
+
 
 (defroutes api
   (GET "/" [] post-handler)
@@ -62,6 +68,6 @@
   (route/not-found error-404-handler))
 
 (def app (-> api
-             (wrap-json-response)
-             (allow-cross-origin)))
+             (allow-cross-origin)
+             (wrap-json-response)))
 
