@@ -6,8 +6,8 @@
             [imageboard-backend.models.boards :refer [get-boards]]
             [imageboard-backend.models.posts :refer [get-posts]]))
 
-(defn post-handler [request]
-  (response (get-posts)))
+(defn post-handler [id]
+  (response (get-posts id)))
 
 (defn board-handler [request]
   (response (get-boards)))
@@ -25,7 +25,7 @@
 
 (defroutes api
   (GET "/" [] post-handler)
-  (GET "/posts" [] post-handler)
+  (GET "/boards/:id/posts" [id] (post-handler id))
   (GET "/boards" [] board-handler)
   (route/not-found error-404-handler))
 

@@ -29,5 +29,5 @@
 (def posts
   (map make-post (range 0 20)))
 
-(defn get-posts []
-  {:posts posts})
+(defn get-posts [id]
+  {:posts [(make-post (str id 1)) (make-post (str id 2))]})
