@@ -6,6 +6,9 @@
             [imageboard-backend.models.boards :refer [get-boards]]
             [imageboard-backend.models.posts :refer [get-posts]]))
 
+;; Initiate database connection
+(load-file "src/imageboard_backend/database/db.clj")
+
 (defn post-handler [id]
   (response (get-posts id)))
 
@@ -24,7 +27,7 @@
           (assoc-in [:headers "Access-Control-Allow-Origin"]  "*")))))
 
 (defroutes api
-  (GET "/" [] post-handler)
+  (GET "/" [] (post-handler "no-id"))
   (GET "/boards/:id/posts" [id] (post-handler id))
   (GET "/boards" [] board-handler)
   (route/not-found error-404-handler))

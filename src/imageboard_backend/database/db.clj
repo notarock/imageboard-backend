@@ -1,7 +1,6 @@
-(ns imageboard-backend.database.db)
-(require '[toucan.db :as db])
-(require '[toucan.models :as model])
-(require '[environ.core :refer [env]])
+(ns imageboard-backend.database.db
+  (:require [toucan.db :as db]
+           [environ.core :refer [env]]))
 
 (println (env :app-env))
 
