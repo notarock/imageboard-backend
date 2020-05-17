@@ -1,11 +1,14 @@
-(ns imageboard-backend.models.boards)
+(ns imageboard-backend.models.boards
+  (:require [toucan.db :as db]
+            [toucan.models :refer :all]))
 
-(def boards
-  [{:id 0 :name "Home" :abbreviation "h"}
-   {:id 1 :name "technology" :abbreviation "g"}
-   {:id 2 :name "Wallpaper general" :abbreviation "wg"}
-   {:id 3 :name "Fashion" :abbreviation "fa"}
-   {:id 4 :name "Food & cooking" :abbreviation "ck"}])
+;; define the Board model
+(defmodel Board :board)
+
+;; I used this to create boards interactively.
+;; probably shoueld be used in a migration, on something.
+;;
+;; (db/insert! Board :id 1 :name "Technology")
 
 (defn get-boards []
-  {:boards boards})
+  {:boards (Board)})
