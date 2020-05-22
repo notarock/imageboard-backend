@@ -5,10 +5,16 @@
 ;; define the Board model
 (defmodel Board :board)
 
-;; I used this to create boards interactively.
-;; probably shoueld be used in a migration, on something.
-;;
-;; (db/insert! Board :id 1 :name "Technology")
-
 (defn get-boards []
   {:boards (Board)})
+
+(defn board-by-abbrev [abb]
+  (db/select Board :abbreviation abb))
+
+;; (db/update-where! (Board 1))
+;
+; (db/delete! Board :id 1)
+;
+; (Board)
+;
+; (db/insert! Board :id 1 :name "Technology" :postsCount 10000)
